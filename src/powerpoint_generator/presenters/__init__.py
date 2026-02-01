@@ -1,0 +1,1 @@
+"""PowerPoint presentation generation logic."""

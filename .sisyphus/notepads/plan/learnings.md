@@ -1,0 +1,1 @@
+- PlannerAgent uses PydanticOutputParser with PresentationOutline schema.

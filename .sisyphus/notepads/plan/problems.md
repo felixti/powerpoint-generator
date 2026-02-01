@@ -1,0 +1,1 @@
+- Tests require langchain_core; test fallback avoids direct dependency by mocking response content.

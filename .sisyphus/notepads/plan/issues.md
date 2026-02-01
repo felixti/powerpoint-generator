@@ -1,0 +1,1 @@
+- LSP diagnostics failed because basedpyright is missing in the environment.

@@ -1,0 +1,1 @@
+- PlannerAgent errors are wrapped in PlannerAgentError for LLM or parsing failures.

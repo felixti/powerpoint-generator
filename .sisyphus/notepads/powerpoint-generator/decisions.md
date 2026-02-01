@@ -1,0 +1,1 @@
+- Workflow returns compiled graph via StateGraph.compile; errors appended to AgentState.errors.
