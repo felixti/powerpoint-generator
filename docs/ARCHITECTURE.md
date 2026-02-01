@@ -44,10 +44,13 @@ The AI PowerPoint Generator is a multi-agent system that creates professional pr
 
 | Component | Library | Version | Purpose |
 |-----------|---------|---------|---------|
-| **LLM Interface** | langchain | ^0.1.0 | LLM abstraction layer |
-| **LLM Provider** | langchain-openai | ^1.1.7 | OpenAI-compatible API |
-| **Agent Orchestration** | langgraph | ^0.0.1 | State machine workflow |
+| **LLM Interface** | langchain | ^1.0.0 | LLM abstraction layer (v1.0+ stable) |
+| **LLM Core** | langchain-core | ^1.0.0 | Core messaging and output parsing |
+| **LLM Provider** | langchain-openai | ^1.0.0 | OpenAI-compatible API |
+| **Agent Orchestration** | langgraph | ^1.0.0 | State machine workflow (v1.0+ stable) |
 | **LLM Gateway** | OpenRouter | API | Unified LLM access (Claude, GPT, etc.) |
+
+**Note:** All LangChain ecosystem packages are on v1.0+ stable releases. See [MIGRATION_v1.md](./MIGRATION_v1.md) for migration details.
 
 ### Data & Validation
 
@@ -511,7 +514,9 @@ powerpoint-generator/
 │   └── quick_example.py             # Simple example
 │
 ├── 📁 docs/                          # Documentation
+│   ├── ARCHITECTURE.md              # Architecture documentation
 │   ├── EVOLUTION_SPEC.md            # Evolution roadmap
+│   ├── MIGRATION_v1.md              # LangChain v1 migration guide
 │   └── openrouter.md                # Integration guide
 │
 ├── 📁 templates/                     # PPTX templates (future)
@@ -774,9 +779,41 @@ async def generate_content(slide_outline):
 
 ---
 
+## Version Compatibility
+
+### LangChain Ecosystem v1.0+
+
+This application uses **LangChain v1.0+** and **LangGraph v1.0+** stable releases:
+
+| Package | Current | Minimum | Status |
+|---------|---------|---------|--------|
+| `langchain` | 1.2.7 | >=1.0.0 | ✅ Stable |
+| `langchain-core` | 1.2.7 | >=1.0.0 | ✅ Stable |
+| `langchain-openai` | 1.1.7 | >=1.0.0 | ✅ Stable |
+| `langgraph` | 1.0.7 | >=1.0.0 | ✅ Stable |
+
+**Migration Status:** ✅ Fully compatible - no breaking changes required
+
+### Key v1.0 Features Used
+
+- **`PydanticOutputParser`** from `langchain_core.output_parsers` - Structured LLM outputs
+- **`BaseChatModel`** from `langchain_core.language_models` - LLM abstraction
+- **`StateGraph`** from `langgraph` - Agent workflow orchestration
+- **Async/await patterns** - Throughout for optimal performance
+
+### Migration Notes
+
+See [MIGRATION_v1.md](./MIGRATION_v1.md) for:
+- Detailed migration analysis
+- v1 best practices
+- Optional enhancement recommendations
+- Breaking changes review
+
+---
+
 ## Document Information
 
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last Updated:** February 2025
 - **Author:** AI PowerPoint Generator Team
 - **Status:** Active Development
@@ -788,4 +825,5 @@ async def generate_content(slide_outline):
 - [AGENTS.md](../AGENTS.md) - Development guidelines
 - [SPEC.md](../SPEC.md) - Technical specification
 - [EVOLUTION_SPEC.md](./EVOLUTION_SPEC.md) - Future roadmap
+- [MIGRATION_v1.md](./MIGRATION_v1.md) - LangChain v1.0+ migration guide
 - [openrouter.md](./openrouter.md) - Integration guide
